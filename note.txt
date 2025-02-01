@@ -1,0 +1,63 @@
+-------Prisna--------
+
+npm install prisma --save-dev
+- meng download library prisma
+
+npx init prisma
+- meng inisialiasi project prisma dengan meng create folder prisma dan sebagainya. 
+
+npx prisma migrate dev --create-only --name nama_migrationnya
+- bikin migrate tpi create only dulu
+
+npx prisma migrate dev
+- menjalankan schema.prisma untuk men-generate migration sesuai model yang ada dalam schema.prisma
+- jika migration sudah ada, maka command ini hanya untuk men-generate tabel otomatis
+
+npx prisma db pull
+- kebalikan dari migrate dev, dimana schema.prisma akan otomatis membuat model sesuai dengan tabel yang sudah dibuat
+
+npx prisma generate
+- untuk mensave perubahan di prismanya 
+
+npx prisma migrate reset
+- reset ulang migrasi beserta datanya
+
+npx prisma db seed
+- menjalankan seed sesuai package.json prisma
+
+npm start
+- jalanin frontend
+
+nodemon src/main.js
+- jalanin backend
+
+------PostgreSQL------
+psql -U postgres
+- untuk masuk ke postgre di cmd
+
+ ALTER ROLE fadli CREATEDB
+ - untuk menambahkan hak milik yang bisa menambah database
+ 
+
+ -----Docker-----
+
+ penyimpanan docker dan lokal itu berbeda
+
+ docker-compose up 
+ - untuk menjalankan docker-compose
+
+docker-compose down
+- untuk menghentikan/merestart docker
+
+docker-compose down -v
+- untuk menghapus volume dan data2 docker
+
+docker-compose up --build
+- untuk membuat ulang docker
+- kalau ada perubahan dicode wajib melakukan perintah ini
+
+ docker-compose exec db psql -U fadli -d kuasar_test
+ - untuk masuk ke penyimpanan docker-compose nya dengan syarat docker-compose nya nyala
+
+ SELECT * FROM "user";
+ - untuk melihat data dalam table user

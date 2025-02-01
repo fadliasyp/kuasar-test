@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: fadli
+      POSTGRES_PASSWORD: fadliasyip12345
+      POSTGRES_DB: kuasar_test
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - my_network
+
+  app:
+    build: .
+    container_name: node_app
+    restart: always
+    depends_on:
+      - db
+    environment:
+      JWT_SECRET : masj36hd9a8hs598382mgnfmf23f0335j6j7O90SY2ju35loa97
+      SESSION_SECRET : asnd8h83rh18brf81b3rc101n3e013nb1ce2b1208bec812he081h208e
+      DATABASE_URL: postgresql://fadli:fadliasyip12345@db:5432/kuasar_test
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+    command: ["sh", "-c", "npx prisma migrate deploy && node src/main.js"]
+    networks:
+      - my_network
+
+volumes:
+  pgdata:
+
+networks:
+  my_network:

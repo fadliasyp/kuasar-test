@@ -1,0 +1,25 @@
+{
+    "openapi":"3.0.3",
+    "info": {
+      "title":"Kuasar-test",
+      "version":"1.0",
+      "description": "OpenApi for kuasar test RESTful API",
+      "contact": {
+        "name": "Fadli Asyp Riansyah",
+        "email": "riansyahfadli12@gmail.com",
+        "url": "https://github.com/fadliasyp"
+      },
+      "license": {
+        "name": "Postgre SQL 17.2",
+        "url": "https://www.postgresql.org/about/licence/"
+      }
+    },
+    "servers": [
+      {
+        "url":"https://api.server.test/v1"
+        
+    }
+    ],
+    "paths": {
+    }
+  }

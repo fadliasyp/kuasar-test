@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+   id_user  Int  @id @default(autoincrement()) 
+   name String @db.VarChar(100)
+   email String @db.VarChar(100)
+   password String @db.VarChar(225)
+   token String? @db.VarChar(225)
+   avatar String? @db.VarChar(225)
+   phone String? @db.VarChar(100)
+   adress String @db.VarChar(225)
+   createdAt DateTime @default(now())
+   updatedAt DateTime @updatedAt
+
+   project Project?
+   task Task []
+
+   @@map("user")
+   }
+
+model Task {
+  assignedTo Int @id @default(autoincrement())
+  title String @db.VarChar(100)
+  description String?
+  projectId Int 
+
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+
+  user User @relation(fields: [assignedTo], references: [id_user])
+  project Project @relation(fields: [projectId], references: [id_project])
+
+  @@map("task")
+}
+
+model Project {
+  id_project Int @id @default(autoincrement())
+  name String @db.VarChar(100)
+  description String? @db.VarChar(225)
+  createdAt DateTime @default(now())
+  update DateTime @updatedAt
+
+  user User @relation(fields: [id_project], references: [id_user])
+  task Task []
+
+  @@map("project")
+}
