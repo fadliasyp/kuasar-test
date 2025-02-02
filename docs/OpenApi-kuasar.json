@@ -1,0 +1,897 @@
+{
+    "openapi":"3.0.3",
+    "info": {
+      "title":"Kuasar-test",
+      "version":"1.0",
+      "description": "OpenApi for kuasar test RESTful API",
+      "contact": {
+        "name": "Fadli Asyp Riansyah",
+        "email": "riansyahfadli12@gmail.com",
+        "url": "https://github.com/fadliasyp"
+      },
+      "license": {
+        "name": "Postgre SQL 17.2",
+        "url": "https://www.postgresql.org/about/licence/"
+      }
+    },
+    "servers": [
+      {
+        "description": "Kuasar-test",
+        "url":"https://kuasar-test-beta.vercel.app/"
+        
+    }
+    ],
+    "paths": {
+      "/user":{
+        "post":{
+          "security": [
+            {
+              "UserAuth":[]
+            }
+          ],
+          "tags": ["User"],
+          "summary": "Post User register/login",
+          "description": "Post active User by active",
+          "requestBody":{
+            "required": true,
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "avatar": {
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": "string"
+                    },
+                    "adress": {
+                      "type": "string"
+                    }
+                  }
+                }, "example": {
+                  "name": "Fadli Asyp Riansyah",
+                  "email": "riansyahfadli12@gmial.com",
+                  "password": "rahasiabanget",
+                  "avatar": "man1.png",
+                  "phone": "0846829373",
+                  "adress": "Tangerang"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200":{
+              "description": "Success create User",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id_user":{
+                        "type": "integer"
+                      },
+                      "name":{
+                        "type": "string"
+                      },
+                      "email":{
+                        "type": "string"
+                      },
+                      "avatar":{
+                        "type": "string"
+                      },
+                      "phone":{
+                        "type": "string"
+                      },
+                      "adress":{
+                        "type": "string"
+                      }
+                    }
+                  },"example":{
+                    "data":{
+                      "id_user": 1,
+                      "name": "Fadli Asyp Riansyah",
+                      "email": "riansyahfadli12@gmial.com",
+                      "avatar": "man1.png",
+                      "phone": "0846829373",
+                      "adress": "Tangerang"
+                    },
+                    "message": "Success create User"
+                  }
+                }
+              }
+            },
+            "404":{
+              "description": "Failed create User",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "errors" :{
+                        "type": "string"}
+                    }
+                  },"example":{
+                    "errors": "Failed create User"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get":{
+          "tags": ["User"],
+          "summary": "Get All User",
+          "description": "Get All active User",
+          "responses": {
+            "200":{
+              "description": "Success",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id_user":{
+                        "type": "integer"
+                      },
+                      "name":{
+                        "type": "string"
+                      },
+                      "email":{
+                        "type": "string"
+                      },
+                      "password":{
+                        "type": "string"
+                      },
+                      "avatar":{
+                        "type": "string"
+                      },
+                      "phone":{
+                        "type": "string"
+                      },
+                      "adress":{
+                        "type": "string"
+                      }
+                    }
+                  },"example":{
+                    "Success":{
+                      "id_user": 1,
+                      "name": "Fadli Asyp Riansyah",
+                      "email": "riansyahfadli12@gmial.com",
+                      "password": "rahasiabanget",
+                      "avatar": "man1.png",
+                      "phone": "0846829373",
+                      "adress": "Tangerang"
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+        },
+        "delete":{
+          "security": [
+            {
+              "UserAuth":[]
+            }
+          ],
+          "tags": ["User"],
+          "summary": "Delete existing User",
+          "description": "Delete existing User in database",
+          "responses": {
+            "200":{
+              "description": "Success",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id_user":{
+                        "type": "integer"
+                      },
+                      "name":{
+                        "type": "string"
+                      },
+                      "email":{
+                        "type": "string"
+                      },
+                      "avatar":{
+                        "type": "string"
+                      },
+                      "phone":{
+                        "type": "string"
+                      },
+                      "adress":{
+                        "type": "string"
+                      }
+                    }
+                  },"example":{
+                    "data":{
+                      "id_user": 1,
+                      "name": "Fadli Asyp Riansyah",
+                      "email": "riansyahfadli12@gmial.com",
+                      "avatar": "man1.png",
+                      "phone": "0846829373",
+                      "adress": "Tangerang"
+                    },
+                    "message": "Logout Success"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/user/:id":{
+        "put":{
+          "security": [
+            {
+              "UserAuth":[]
+            }
+          ],
+          "tags": ["User"],
+          "summary": "Update existing User",
+          "description": "Update existing User in database",
+          "requestBody":{
+            "required": true,
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "avatar": {
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": "string"
+                    },
+                    "adress": {
+                      "type": "string"
+                    }
+                  }
+                },"example": {
+                  "name": "Fadli Asyp Riansyah",
+                  "email": "riansyahfadli12@gmial.com",
+                  "password": "rahasiabanget",
+                  "avatar": "man1.png",
+                  "phone": "0846829373",
+                  "adress": "Tangerang"}
+              }
+            }
+          },
+          "responses": {
+            "200":{
+              "description": "Success",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id_user":{
+                        "type": "integer"
+                      },
+                      "name":{
+                        "type": "string"
+                      },
+                      "email":{
+                        "type": "string"
+                      },
+                      "avatar":{
+                        "type": "string"
+                      },
+                      "phone":{
+                        "type": "string"
+                      },
+                      "adress":{
+                        "type": "string"
+                      }
+                    }
+                  },"example":{
+                    "Success":{
+                      "id_user": 1,
+                      "name": "Fadli Asyp Riansyah",
+                      "email": "riansyahfadli12@gmial.com",
+                      "avatar": "man1.png",
+                      "phone": "0846829373",
+                      "adress": "Tangerang"
+                    }
+                  }
+                }
+              }
+            },
+            "401":{
+              "description": "Errors Unauthorized",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "errors" :{
+                        "type": "string"}
+                    }
+                  },"example":{
+                    "errors": "Token not valid"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/project":{
+        "post":{
+          "security": [
+            {
+              "UserAuth":[]
+            }
+          ],
+          "tags": ["Project"],
+          "summary": "Post Project Active ",
+          "description": "Post Project by active",
+          "requestBody":{
+            "required": true,
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  }
+                },"example": {
+                  "name": "Project 1",
+                  "description": "Project 1 description"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200":{
+              "description": "Success create Project",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id_project":{
+                        "type": "integer"
+                      },
+                      "name":{
+                        "type": "string"
+                      },
+                      "description":{
+                        "type": "string"}
+                    }
+                  },"example":{
+                    "status": "Success",
+                    "data":{
+                      "id_project": 2,
+                      "name": "somebody pleasure",
+                      "description": "ini deskripsi"
+                    },
+                    "message": "Success create project"
+                  }
+                }
+              }
+            },
+            "401":{
+              "description": "Error Unauthorized",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "errors": {
+                        "type": "string"
+                      }
+                    }
+                  },"example":{
+                    "status": "Error",
+                    "errors": "Token not valid"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get":{
+          "tags": ["Project"],
+          "summary": "Get All Project",
+          "description": "Get All active Project",
+          "responses": {
+            "200":{
+              "description": "Success",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id_project":{
+                        "type": "integer"
+                      },
+                      "name":{
+                        "type": "string"
+                      },
+                      "description":{
+                        "type": "string"
+                      }
+                    }
+                  },"example":{
+                    "status": "Success",
+                    "data": [
+                      {
+                        "id_project": 1,
+                        "name": "Project 1",
+                        "description": "Project 1 description"
+                      },
+                      {
+                        "id_project": 2,
+                        "name": "Project 2",
+                        "description": "Project 2 description"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+
+        }
+      },
+      "/project/:id":{
+        "put":{
+          "security": [
+            {
+              "UserAuth":[]
+            }
+          ],
+          "tags": ["Project"],
+          "summary": "Update existing Project",
+          "description": "Update existing Project in database",
+          "requestBody":{
+            "required": true,
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  }
+                },"example": {
+                  "name": "Project 1",
+                  "description": "Project 1 description"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200":{
+              "description": "Success",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id_project":{
+                        "type": "integer"
+                      },
+                      "name":{
+                        "type": "string"
+                      },
+                      "description":{
+                        "type": "string"
+                      }
+                    }
+                  },"example":{
+                    "status": "Success",
+                    "data": {
+                        "id_project": 1,
+                        "name": "Project 1",
+                        "description": "Project 1 description"
+                    },
+                    "message": "Data berhasil diubah"
+                  }
+                }
+              }
+            },
+            "401":{
+              "description": "Error Unauthorized",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "errors": {
+                        "type": "string"
+                      }
+                    }
+                  },"example":{
+                    "status": "Error",
+                    "errors": "Token not valid"
+                  }
+                }
+              }
+            }
+          }
+
+        },
+        "delete":{
+          "security": [
+            {
+              "UserAuth":[]
+            }
+          ],
+          "tags": ["Project"],
+          "summary": "Delete existing Project",
+          "description": "Delete existing Project in database",
+          "responses": {
+            "200":{
+              "description": "Success",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id_project":{
+                        "type": "integer"
+                      },
+                      "name":{
+                        "type": "string"
+                      },
+                      "description":{
+                        "type": "string"
+                      }
+                    }
+                  },"example":{
+                    "status": "Success",
+                    "data": {
+                        "id_project": 1,
+                        "name": "Project 1",
+                        "description": "Project 1 description"
+                    },
+                    "message": "Logout Success"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/task":{
+        "post":{
+          "security": [
+            {
+              "UserAuth":[]
+            }
+          ],
+          "tags": ["Task"],
+          "summary": "Post Task Active ",
+          "description": "Post Task by active",
+          "requestBody":{
+            "required": true,
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  }
+                },"example": {
+                  "name": "Task 1",
+                  "description": "Task 1 description"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200":{
+              "description": "Success create Task",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "assignedTo":{
+                        "type": "integer"
+                      },
+                      "title":{
+                        "type": "string"
+                      },
+                      "description":{
+                        "type": "string"
+                      },
+                      "projectId":{
+                        "type": "integer"
+                      }
+                    }
+                  },"example":{
+                    "status": "Success",
+                    "data":{
+                      "id_project": 2,
+                      "name": "Tugas kelompok",
+                      "description": "ini deskripsi tugas kelompok",
+                      "user": {
+                            "id_user": 3,
+                            "name": "mika",
+                            "email": "mika@gmail.com",
+                            "password": "$2b$12$fNqmb2vBUSiR0XSyOkKXA.V9XMe.TIb3rXC5HzwyMmZBZi3Ddc6sy",
+                            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pa2FAZ21haWwuY29tIiwiaWF0IjoxNzM4NDA3NTU5LCJleHAiOjE3Mzg0MTExNTl9.c7cTvfiBuqmcE1GX_1hjEZ-blw2GwCnzajwDXauhu28",
+                            "avatar": "/uploads/1738380105987-woman1.png",
+                            "phone": "0812345676",
+                            "adress": "Jambi",
+                            "createdAt": "2025-02-01T03:21:46.907Z",
+                            "updatedAt": "2025-02-01T10:59:19.492Z"
+                        }, "project": {
+                                "id_project": 3,
+                                "name": "somebody pleasure",
+                                "description": "lagu top indonesia",
+                                "createdAt": "2025-02-01T09:44:05.655Z",
+                                "update": "2025-02-01T09:44:05.655Z"
+                            }
+                    },
+                    "message": "Success create Task"
+                  }
+                }
+              }
+            },
+            "401":{
+              "description": "Error Unauthorized",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "errors":{
+                        "type": "string"
+                      }
+                    }
+                  },"example":{
+                    "status": "Errors",
+                    "errors": "Token invalid"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get":{
+          "tags": ["Task"],
+          "summary": "Get All Task",
+          "description": "Get All active Task",
+          "responses": {
+            "200":{
+              "description": "Success",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "assignedTo":{
+                        "type": "integer"
+                      },
+                      "title":{
+                        "type": "string"
+                      },
+                      "description":{
+                        "type": "string"
+                      }, 
+                      "projectId":{
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+        },
+        "put":{
+          "security": [
+            {
+              "UserAuth":[]
+            }
+          ],
+          "tags": ["Task"],
+          "summary": "Update existing Task",
+          "description": "Update existing Task in database",
+          "requestBody":{
+            "required": true,
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "name": { 
+                      "type": "string"
+                    },
+                    "description": { 
+                      "type": "string"
+                    }
+                  }
+                }, "example": {
+                  "name": "Task 1",
+                  "description": "Task 1 description"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200":{
+              "description": "Success Update Task",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "assignedTo":{
+                        "type": "integer"
+                      },
+                      "title":{
+                        "type": "string"
+                      },
+                      "description":{
+                        "type": "string"
+                      },
+                      "projectId":{
+                        "type": "integer"
+                      }
+                    }
+                  },"example":{
+                    "status": "Success",
+                    "data":{
+                      "id_project": 2,
+                      "name": "Tugas kelompok",
+                      "description": "ini deskripsi tugas kelompok",
+                      "user": {
+                            "id_user": 3,
+                            "name": "mika",
+                            "email": "mika@gmail.com",
+                            "password": "$2b$12$fNqmb2vBUSiR0XSyOkKXA.V9XMe.TIb3rXC5HzwyMmZBZi3Ddc6sy",
+                            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pa2FAZ21haWwuY29tIiwiaWF0IjoxNzM4NDA3NTU5LCJleHAiOjE3Mzg0MTExNTl9.c7cTvfiBuqmcE1GX_1hjEZ-blw2GwCnzajwDXauhu28",
+                            "avatar": "/uploads/1738380105987-woman1.png",
+                            "phone": "0812345676",
+                            "adress": "Jambi",
+                            "createdAt": "2025-02-01T03:21:46.907Z",
+                            "updatedAt": "2025-02-01T10:59:19.492Z"
+                        }, "project": {
+                                "id_project": 3,
+                                "name": "somebody pleasure",
+                                "description": "lagu top indonesia",
+                                "createdAt": "2025-02-01T09:44:05.655Z",
+                                "update": "2025-02-01T09:44:05.655Z"
+                            }
+                    },
+                    "message": "Success Update Task"
+                  }
+                }
+              }
+            },
+            "401":{
+              "description": "Error Unauthorized",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "errors":{
+                        "type": "string"
+                      }
+                    }
+                  },"example":{
+                    "status": "Errors",
+                    "errors": "Token invalid"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete":{
+          "security": [
+            {
+              "UserAuth":[]
+            }
+          ],
+          "tags": ["Task"],
+          "summary": "Delete existing Task",
+          "description": "Delete existing Task in database",
+          "responses": {
+            "200":{
+              "description": "Success Delete Task",
+              "content": {
+                "application/json":{
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "assignedTo":{
+                        "type": "integer"
+                      },
+                      "title":{
+                        "type": "string"
+                      },
+                      "description":{
+                        "type": "string"
+                      },
+                      "projectId":{
+                        "type": "integer"
+                      }
+                    }
+                  },"example":{
+                    "status": "Success",
+                    "data":{
+                      "id_project": 2,
+                      "name": "Tugas kelompok",
+                      "description": "ini deskripsi tugas kelompok",
+                      "user": {
+                            "id_user": 3,
+                            "name": "mika",
+                            "email": "mika@gmail.com",
+                            "password": "$2b$12$fNqmb2vBUSiR0XSyOkKXA.V9XMe.TIb3rXC5HzwyMmZBZi3Ddc6sy",
+                            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pa2FAZ21haWwuY29tIiwiaWF0IjoxNzM4NDA3NTU5LCJleHAiOjE3Mzg0MTExNTl9.c7cTvfiBuqmcE1GX_1hjEZ-blw2GwCnzajwDXauhu28",
+                            "avatar": "/uploads/1738380105987-woman1.png",
+                            "phone": "0812345676",
+                            "adress": "Jambi",
+                            "createdAt": "2025-02-01T03:21:46.907Z",
+                            "updatedAt": "2025-02-01T10:59:19.492Z"
+                        }, "project": {
+                                "id_project": 3,
+                                "name": "somebody pleasure",
+                                "description": "lagu top indonesia",
+                                "createdAt": "2025-02-01T09:44:05.655Z",
+                                "update": "2025-02-01T09:44:05.655Z"
+                            }
+                    },
+                    "message": "Success Delete Task"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "UserAuth":{
+          "description": "Authentication for Kuasar RESTful API",
+          "type": "apiKey",
+          "in": "header",
+          "name": "Berer Token"
+        }
+      }
+    }
+  }

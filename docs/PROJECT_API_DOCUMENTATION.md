@@ -44,13 +44,10 @@ Endpoint : PUT/ Project/:id
 Response Body Sucess :
 ```json
 {
-    "data": {
-        "name" : "asyp",
-        "email" : "asyp@gmial.com",
-        "avatar" : man1.png,
-        "phone" : "08483928237",
-        "adress" : "jambi"
-    }, 
+   "data": {
+       "id_project" : 2,
+       "name" :  "somebody pleasure","description": "ini deskripsi"
+    },
     "message" : "Data berhasil diubah"
 }
 ```

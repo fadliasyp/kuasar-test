@@ -48,6 +48,9 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini menggunakan Docker:
 
 ## Dokumentasi API
 Dokumentasi API tersedia di 
+
+- [docs/OpenAPI_Kuasar_test](docs/OpenApi-kuasar.json)
+
 - [docs/USER_API_DOCUMENTATION.md](docs/USER_API_DOCUMENTATION.md)
 
 - [docs/PROJECT_API_DOCUMENTATION.md](docs/PROJECT_API_DOCUMENTATION.md)
